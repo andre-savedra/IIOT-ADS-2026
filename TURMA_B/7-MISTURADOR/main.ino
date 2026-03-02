@@ -1,16 +1,15 @@
 
-#define ON_BUTTON 2
-#define STOP_BUTTON 3
-#define EMERGENCY_BUTTON 4
-#define MOTOR 5
-#define PUMP_A 6
-#define PUMP_B 7
-#define VALV_C 8
-#define FINAL_VALV 9
-#define PRESSURE_SENSOR 10
+#define ON_BUTTON 9
+#define STOP_BUTTON 1
+#define EMERGENCY_BUTTON 2
+#define MOTOR 3
+#define PUMP_A 4
+#define PUMP_B 5
+#define VALV_C 6
+#define FINAL_VALV 7
+#define PRESSURE_SENSOR 8
+#define EMERGENCY_LAMP 10
 
-bool onButton, stopButton, emergencyButton, motor;
-bool pumpA, pumpB, valvC, finalValv, pressureSensor;
 bool systemOn;
 unsigned long timer;
 
@@ -24,53 +23,66 @@ unsigned int steps;
 #define STEP_WAITING_2 6
 #define STEP_EMPTING 7
 
-int inputs[] = {ON_BUTTON, STOP_BUTTON, EMERGENCY_BUTTON, PRESSURE_SENSOR};
-int outputs[] = {MOTOR, PUMP_A, PUMP_B, VALV_C, FINAL_VALV};
-
-int var_inputs[] = {onButton, stopButton, emergencyButton, pressureSensor};
-int var_outputs[] = {motor, pumpA, pumpB, valvC, finalValv};
+int input_pins[] = {ON_BUTTON, STOP_BUTTON, EMERGENCY_BUTTON, PRESSURE_SENSOR};
+int output_pins[] = {MOTOR, PUMP_A, PUMP_B, VALV_C, FINAL_VALV, EMERGENCY_LAMP};
 
 void setup()
 {
     //configura todo o array como entrada
-   for(int i=0; i<inputs.length(); i++){
-    pinMode(inputs[i], INPUT);
+   for(int i=0; i<input_pins.length(); i++){
+    pinMode(input_pins[i], INPUT);
    }
    //configura todo o array como saída
-   for(int i=0; i<outputs.length(); i++){
-    pinMode(outputs[i], OUTPUT);
+   for(int i=0; i<output_pins.length(); i++){
+    pinMode(output_pins[i], OUTPUT);
    }
 }
-
-void io_mapping(){
-    //configura todo o array como entrada
-//    for(int i=0; i<var_inputs.length(); i++){
-//       var_inputs[i]  = digitalRead(inputs[i]);
-//    }
-//    //configura todo o array como saída
-//    for(int i=0; i<var_outputs.length(); i++){
-//     digitalWrite(outputs[i], var_outputs[i]);
-//    }
-
+// lê uma entrada
+boolean in(int pin){
+    return digitalRead(pin);
+}
+// liga uma saída
+void on(int pin){
+    digitalWrite(pin, true);
+}
+// desliga uma saída
+void off(int pin){
+    digitalWrite(pin, false);
+}
+// desliga tudo
+void turnOff(){
+    for(int i=0; i<output_pins.length(); i++){
+     off(output_pins[i]);
+    }
+}
+// desliga tudo
+void turnOffExcept(int exception_pins[]){
+    for(int i=0; i<output_pins.length(); i++){
+        if(exception_pins.indexOf(output_pins[i]) == -1 ){
+            off(output_pins[i]);
+        }
+    }
 }
 
+boolean timeout(int timing_sec){
+    return (millis()-timer)>= (timing_sec * 1000);
+}
+
+
 void loop()
-{
-    io_mapping();  
-    
+{    
     // lógica liga / desliga sistema
-    if(onButton && !stopButton){
+    if(in(ON_BUTTON) && !in(STOP_BUTTON)){
         systemOn = true;
     }
-    else if(stopButton){
+    else if(in(STOP_BUTTON)){
         systemOn = false;
     }
 
     // sistema em funcionamento
     if(systemOn){
-
         //emergência ok
-        if(emergencyButton){
+        if(in(EMERGENCY_BUTTON)){
             
             switch (steps) {
 
@@ -80,22 +92,22 @@ void loop()
                 break;
 
             case STEP_PRODUCT_A:
-                 pumpA = true; // injeto produto A
+                 on(PUMP_A); // injeto produto A
                  
                  //conta 3 segundos
-                 if( (millis()-timer)>= 3000){
-                     pumpA = false; //desliga bomba
+                 if(timeout(3)){
+                     off(PUMP_A); //desliga bomba
                      steps++; //avança etapa
                      timer = millis(); //pega nova referência
                  }
                  break;
 
             case STEP_PRODUCT_B:
-             pumpB = true; // injeto produto B
+                on(PUMP_B); // injeto produto B
                  
                  //conta 4 segundos
-                 if( (millis()-timer)>= 4000){
-                     pumpB = false; //desliga bomba
+                 if(timeout(4)){
+                     off(PUMP_B); //desliga bomba
                      steps++; //avança etapa
                      timer = millis(); //pega nova referência
                  }
@@ -104,62 +116,60 @@ void loop()
             case STEP_WAITING_2:
             case STEP_WAITING:            
                  //conta 2 segundos
-                 if( (millis()-timer)>= 2000){
+                 if(timeout(2)){
                      steps++; //avança etapa
                      timer = millis(); //pega nova referência
                  }
                  break;
 
             case STEP_PRODUCT_C:
-                valvC = true; // injeto produto C
+                on(VALV_C); // injeto produto C
                  
                  //conta 5 segundos
-                 if( (millis()-timer)>= 5000){
-                     valvC = false; //desliga valvula C
+                 if(timeout(5)){
+                     off(VALV_C); //desliga valvula C
                      steps++; //avança etapa
                      timer = millis(); //pega nova referência
                  }
                  break;
 
             case STEP_MIXING:
-                motor = true; // mistura
+                on(MOTOR); // mistura
                  
                  //conta 10 segundos
-                 if( (millis()-timer)>= 10000){
-                     motor = false; //desliga valvula C
+                 if(timeout(10)){
+                     off(MOTOR); //desliga valvula C
                      steps++; //avança etapa
                      timer = millis(); //pega nova referência
                  }
                  break;
 
             case STEP_EMPTING:
-                finalValv = true; // liga válvula de escoamento do produto
+                on(FINAL_VALV); // liga válvula de escoamento do produto
 
-                if(pressureSensor){
-                 finalValv = false; // desliga válvula de escoamento do produto 
+                if(in(PRESSURE_SENSOR)){
+                 off(FINAL_VALV); // desliga válvula de escoamento do produto 
                  steps = STEP_STAND_BY;  //terminou recomeça
                  //systemOn = false; // se ativo, ao terminar tem que pressionar o botão liga novamente para recomeçar
                 }
                  break;        
             }
-
-
         }
         //emergência acionado
         else{
             turnOff();
             steps = STEP_STAND_BY;
+            systemOn = false;
         }
     }
     // sistema desligado
     else{
-        turnOff();
+        turnOffExcept([EMERGENCY_LAMP]);
+        if(in(EMERGENCY_BUTTON)){
+            on(EMERGENCY_LAMP);
+        }
+        
     }
 }
 
-void turnOff(){
-    for(int i=0; i<outputs.length(); i++){
-     digitalWrite(outputs[i], false);
-    }
-}
 
