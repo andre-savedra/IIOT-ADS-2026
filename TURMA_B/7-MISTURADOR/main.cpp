@@ -58,9 +58,9 @@ void turnOff(){
 // desliga tudo
 void turnOffExcept(int exception_pins[]){
     for(int i=0; i<sizeof(output_pins); i++){
-        if(indexOf(output_pins[i], exception_pins) == -1 ){
-            off(output_pins[i]);
-        }
+        // if(indexOf(output_pins[i], exception_pins) == -1 ){
+        //     off(output_pins[i]);
+        // }
     }
 }
 
@@ -165,7 +165,7 @@ void loop()
     // sistema desligado
     else{
         int pin[] = {EMERGENCY_BUTTON};
-        turnOffExcept(pin);
+        turnOff();
         if(in(EMERGENCY_BUTTON)){
             on(EMERGENCY_LAMP);
         }
