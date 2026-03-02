@@ -29,11 +29,11 @@ int output_pins[] = {MOTOR, PUMP_A, PUMP_B, VALV_C, FINAL_VALV, EMERGENCY_LAMP};
 void setup()
 {
     //configura todo o array como entrada
-   for(int i=0; i<input_pins.length(); i++){
+   for(int i=0; i<sizeof(input_pins); i++){
     pinMode(input_pins[i], INPUT);
    }
    //configura todo o array como saída
-   for(int i=0; i<output_pins.length(); i++){
+   for(int i=0; i<sizeof(output_pins); i++){
     pinMode(output_pins[i], OUTPUT);
    }
 }
@@ -51,14 +51,14 @@ void off(int pin){
 }
 // desliga tudo
 void turnOff(){
-    for(int i=0; i<output_pins.length(); i++){
+    for(int i=0; i<sizeof(output_pins); i++){
      off(output_pins[i]);
     }
 }
 // desliga tudo
 void turnOffExcept(int exception_pins[]){
-    for(int i=0; i<output_pins.length(); i++){
-        if(exception_pins.indexOf(output_pins[i]) == -1 ){
+    for(int i=0; i<sizeof(output_pins); i++){
+        if(indexOf(output_pins[i], exception_pins) == -1 ){
             off(output_pins[i]);
         }
     }
@@ -164,7 +164,8 @@ void loop()
     }
     // sistema desligado
     else{
-        turnOffExcept([EMERGENCY_LAMP]);
+        int pin[] = {EMERGENCY_BUTTON};
+        turnOffExcept(pin);
         if(in(EMERGENCY_BUTTON)){
             on(EMERGENCY_LAMP);
         }
