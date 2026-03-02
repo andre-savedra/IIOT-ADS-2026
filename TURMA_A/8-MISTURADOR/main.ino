@@ -12,8 +12,8 @@
 int input_pins[] = { OFF_BUTTON, EMERGENCY_BUTTON, PRESSURE_SENSOR, ON_BUTTON };
 int output_pins[] = { MOTOR, A_PUMP, B_PUMP, C_VALV, FINAL_PRODUCT_VALV, EMERGENCY_LAMP };
 
-bool inputs[input_pins.length()];
-bool outputs[output_pins.length()];
+bool inputs[sizeof(input_pins)];
+bool outputs[sizeof(output_pins)];
 
 bool systemOn;
 int steps;
