@@ -58,9 +58,16 @@ void turnOff(){
 // desliga tudo
 void turnOffExcept(int exception_pins[]){
     for(int i=0; i<sizeof(output_pins); i++){
-        // if(indexOf(output_pins[i], exception_pins) == -1 ){
-        //     off(output_pins[i]);
-        // }
+        bool isException = false;
+        for(int j=0; j<sizeof(exception_pins); j++){
+            if(exception_pins[j] == output_pins[i]){
+                isException = true;
+                break;
+            }
+        }
+        if(!isException){
+             off(output_pins[i]);
+        }
     }
 }
 
@@ -74,6 +81,7 @@ void loop()
     // lógica liga / desliga sistema
     if(in(ON_BUTTON) && !in(STOP_BUTTON)){
         systemOn = true;
+        turnOff();
     }
     else if(in(STOP_BUTTON)){
         systemOn = false;
@@ -164,9 +172,9 @@ void loop()
     }
     // sistema desligado
     else{
-        int pin[] = {EMERGENCY_BUTTON};
-        turnOff();
-        if(in(EMERGENCY_BUTTON)){
+        int pin[] = {EMERGENCY_LAMP};
+        turnOffExcept(pin);
+        if(!in(EMERGENCY_BUTTON)){
             on(EMERGENCY_LAMP);
         }
         
