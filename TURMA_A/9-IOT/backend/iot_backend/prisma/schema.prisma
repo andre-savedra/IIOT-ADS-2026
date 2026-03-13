@@ -1,0 +1,46 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+
+// ENTIDADES (TABELAS) DO MEU BANCO:
+
+model Machine {
+  id BigInt @id @default(autoincrement())
+  name String 
+  createdAt DateTime @default(now())
+  sensors Sensor[]
+}
+
+model Sensor {
+  id BigInt @id @default(autoincrement())
+  name String 
+  code String
+  description String
+  createdAt DateTime @default(now())
+  datas Data[]
+  machineId BigInt
+  machine Machine @relation(fields: [machineId], references: [id], onDelete: Cascade)
+}
+
+model Data {
+  id String @id @default(uuid())
+  value1 Float  
+  value2 Float?
+  value3 Float?
+  value4 Float?
+  value5 Float?
+  createdAt DateTime @default(now())
+  sensorId BigInt
+  sensor Sensor @relation(fields: [sensorId], references: [id], onDelete: Cascade)
+}
