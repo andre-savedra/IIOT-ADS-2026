@@ -4,10 +4,38 @@
 // Get a free hosted Postgres database in seconds: `npx create-db`
 
 generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
 }
+
+
+model Machine {
+  id String @id @default(uuid())
+  name String 
+  createdAt DateTime @default(now())
+  sensors Sensor[]  
+}
+
+model Sensor {
+  id String @id @default(uuid())
+  name String
+  code String
+  description String
+  createdAt DateTime @default(now())
+  machineId String 
+  machine Machine @relation(fields: [machineId], references: [id], onDelete: Cascade)
+  data Data[]
+}
+
+model Data {
+  id String @id @default(uuid())
+  createdAt DateTime @default(now())
+  jsonValue Json
+  sensorId String 
+  sensor Sensor @relation(fields: [sensorId], references: [id], onDelete: Cascade)
+}
+
+

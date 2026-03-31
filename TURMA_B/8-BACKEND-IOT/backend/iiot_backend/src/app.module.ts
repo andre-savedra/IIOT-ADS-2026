@@ -1,18 +1,13 @@
-import { Module } from '@nestjs/common';
+import { Global, Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ConfigModule } from '@nestjs/config';
-import { SensorsModule } from './sensors/sensors.module';
+import { MachineModule } from './machine/machine.module';
 
+@Global()
 @Module({
-  imports: [
-    //configura o nest para ler .env
-    ConfigModule.forRoot({
-      isGlobal: true,
-    }),
-    SensorsModule,
-  ],
+  imports: [MachineModule],
   controllers: [AppController],
   providers: [AppService],
+  exports: [AppService],
 })
 export class AppModule {}
