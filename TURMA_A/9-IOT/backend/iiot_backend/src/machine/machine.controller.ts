@@ -19,16 +19,16 @@ export class MachineController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.machineService.findOne(+id);
+    return this.machineService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateMachineDto: UpdateMachineDto) {
-    return this.machineService.update(+id, updateMachineDto);
+    return this.machineService.update(id, updateMachineDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.machineService.remove(+id);
+    return this.machineService.remove(id);
   }
 }
