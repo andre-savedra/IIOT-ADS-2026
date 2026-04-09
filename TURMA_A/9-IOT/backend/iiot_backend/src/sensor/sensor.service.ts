@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateSensorDto } from './dto/create-sensor.dto';
 import { UpdateSensorDto } from './dto/update-sensor.dto';
 import { AppService } from 'src/app.service';
@@ -15,7 +15,7 @@ export class SensorService {
     });
 
     if(machineFound === null){
-        return `Máquina com o id: ${createSensorDto.machineId} não encontrada!`;
+      throw new NotFoundException(`Máquina com o id: ${createSensorDto.machineId} não encontrada!`);
     }
 
     return this.appService.sensor.create({
@@ -43,7 +43,7 @@ export class SensorService {
     });
 
     if(machineFound === null){
-        return `Máquina com o id: ${updateSensorDto.machineId} não encontrada!`;
+      throw new NotFoundException(`Máquina com o id: ${updateSensorDto.machineId} não encontrada!`);
     }
 
     return this.appService.sensor.update({
