@@ -5,10 +5,10 @@
 ## 2 - Criar as variáveis de ambiente para serem usadas no command line:
 
 ```
-$RG="andre-savedra-rg"
+$RG="andre-savedra2-rg"
 $LOC="westus2"
-$APP="andre-savedra-iiot-app"
-$SP="andre-savedra-iiot-sp"
+$APP="andre-savedra2-iiot-app"
+$SP="andre-savedra2-iiot-sp"
 ```
 
 ## 3 - Criar grupo de recurso:
@@ -65,6 +65,10 @@ az webapp config appsettings set --name $APP --resource-group $RG --settings POR
 
 ```
 az webapp config appsettings set --name $APP --resource-group $RG --settings NODE_ENV=production
+```
+
+```
+az webapp config set --name $APP --resource-group $RG --startup-file "node dist/src/main.js"
 ```
 
 
