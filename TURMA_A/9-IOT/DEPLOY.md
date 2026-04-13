@@ -40,7 +40,7 @@ npm run build
 ## 7 - Zipar a pasta dist que foi criada:
 zip a pasta do backend
 
-## 8 - Enviar o projeto para o app service:
+## 8 - Enviar o projeto para o app service:th .\dist.zip --type zip
 ```bash
 az webapp deploy --name $APP --resource-group $RG --src-path .\dist.zip --type zip
 ```

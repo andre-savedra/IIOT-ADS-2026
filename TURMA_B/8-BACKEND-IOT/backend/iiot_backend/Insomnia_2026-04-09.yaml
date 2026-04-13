@@ -1,0 +1,365 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: Scratch Pad
+meta:
+  id: wrk_scratchpad
+  created: 1742862888743
+  modified: 1742862888743
+  description: ""
+collection:
+  - name: IIOT-API
+    meta:
+      id: fld_495b9a86ef2f4255b733706da8e60723
+      created: 1774913140507
+      modified: 1774913140507
+      sortKey: -1774913140507
+      description: ""
+    children:
+      - name: MACHINE
+        meta:
+          id: fld_6577d9e90064414194c35cff86c6a3ec
+          created: 1775174086968
+          modified: 1775174086968
+          sortKey: -1775174086968
+          description: ""
+        children:
+          - url: http://127.0.0.1:3000/machine
+            name: Create Machine
+            meta:
+              id: req_bc435b22b9f64a578b20df50d242caed
+              created: 1774913143433
+              modified: 1775782639913
+              isPrivate: false
+              description: ""
+              sortKey: -1775174097517
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"name": "abcde"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.6.2
+              - name: X-API-KEY
+                value: "{{ _['X-API-KEY'] }}"
+                description: ""
+                disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://127.0.0.1:3000/machine/1e134198-be1a-457a-8cf1-811c574369d8
+            name: Update Machine
+            meta:
+              id: req_e2aae20a862946638d315050a4f201dd
+              created: 1774920339014
+              modified: 1775782622011
+              isPrivate: false
+              description: ""
+              sortKey: -1775174097617
+            method: PATCH
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"name": "Torno CNC Romi 2026"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.6.2
+              - name: X-API-KEY
+                value: "{{ _['X-API-KEY'] }}"
+                description: ""
+                disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://127.0.0.1:3000/machine/1e134198-be1a-457a-8cf1-811c574369d8
+            name: Delete Machine
+            meta:
+              id: req_a7d4de048efe4d79af3fa526a5918a95
+              created: 1774920402260
+              modified: 1775782643190
+              isPrivate: false
+              description: ""
+              sortKey: -1775174097567
+            method: DELETE
+            headers:
+              - name: User-Agent
+                value: insomnia/11.6.2
+              - name: X-API-KEY
+                value: "{{ _['X-API-KEY'] }}"
+                description: ""
+                disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://127.0.0.1:3000/machine
+            name: Get Machines
+            meta:
+              id: req_c4cc2641c0b941059f31f21e6570a74e
+              created: 1775174111899
+              modified: 1775782646194
+              isPrivate: false
+              description: ""
+              sortKey: -1775174097579.5
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/11.6.2
+              - name: X-API-KEY
+                value: "{{ _['X-API-KEY'] }}"
+                description: ""
+                disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: SENSOR
+        meta:
+          id: fld_6e5c66d2b9244aa58413faf175e6cfec
+          created: 1775174093913
+          modified: 1775174093913
+          sortKey: -1775174093913
+          description: ""
+        children:
+          - url: http://127.0.0.1:3000/sensor
+            name: Get Sensors
+            meta:
+              id: req_84a7744f32654fd5bbfcf6c9a5715872
+              created: 1774920316677
+              modified: 1775782103676
+              isPrivate: false
+              description: ""
+              sortKey: -1775174123844
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/11.6.2
+              - name: X-API-KEY
+                value: "{{ _['X-API-KEY'] }}"
+                description: ""
+                disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://127.0.0.1:3000/sensor/60eb49d8-4b10-4102-937f-a7fddee57881
+            name: Delete Sensor
+            meta:
+              id: req_305573e527b74fba8bf6119ccff60671
+              created: 1775174123744
+              modified: 1775782595133
+              isPrivate: false
+              description: ""
+              sortKey: -1775174123744
+            method: DELETE
+            headers:
+              - name: User-Agent
+                value: insomnia/12.4.0
+                description: ""
+                disabled: false
+              - name: X-API-KEY
+                value: "{{ _['X-API-KEY'] }}"
+                description: ""
+                disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://127.0.0.1:3000/sensor
+            name: Create Sensor
+            meta:
+              id: req_1e769a43a86c444abae5bc7c318653ec
+              created: 1775174169749
+              modified: 1775781881282
+              isPrivate: false
+              description: ""
+              sortKey: -1775174123794
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {	
+                		"name": "Sensor de Efeito Hall",
+                		"code": "HAKKIIF334",
+                		"description": "Sensor de Efeito Hall 5mA",
+                		"machineId": "4f6fd536-2bfa-408f-b267-7def526a2235"	
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.6.2
+              - name: X-API-KEY
+                value: "{{ _['X-API-KEY'] }}"
+                description: ""
+                disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: DATA
+        meta:
+          id: fld_3129843e15c94240adda6e5853368404
+          created: 1775178288340
+          modified: 1775178288340
+          sortKey: -1775174090440.5
+          description: ""
+        children:
+          - url: http://127.0.0.1:3000/data
+            name: Get DATA
+            meta:
+              id: req_30b0fcaa81b941d4b9f9b32c10cc730f
+              created: 1775178288343
+              modified: 1775782604202
+              isPrivate: false
+              description: ""
+              sortKey: -1775174123844
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/11.6.2
+              - name: X-API-KEY
+                value: "{{ _['X-API-KEY'] }}"
+                description: ""
+                disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://127.0.0.1:3000/data/1ec0a627-2336-4cdc-8e52-6bfb16ce968d
+            name: Delete Data
+            meta:
+              id: req_0f8b61c4b8254e66bf52ebb90bdc074b
+              created: 1775178288345
+              modified: 1775782614603
+              isPrivate: false
+              description: ""
+              sortKey: -1775174123744
+            method: DELETE
+            headers:
+              - name: User-Agent
+                value: insomnia/12.4.0
+                description: ""
+                disabled: false
+              - name: X-API-KEY
+                value: "{{ _['X-API-KEY'] }}"
+                description: ""
+                disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://127.0.0.1:3000/data
+            name: Create Data
+            meta:
+              id: req_9cb4ca068a6e49c48d7b4994e772a974
+              created: 1775178288347
+              modified: 1775775504718
+              isPrivate: false
+              description: ""
+              sortKey: -1775174123794
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"jsonValue": "{\"temperatura\": 33.0,\"ph\": 7.5}",
+                	"sensorId": "45fd156b-f1b1-4ab8-8799-18e15787a98a"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.6.2
+              - name: X-API-KEY
+                value: "{{ _['X-API-KEY'] }}"
+                description: ""
+                disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1743724088329
+    modified: 1743724088329
+environments:
+  name: Base Environment
+  meta:
+    id: env_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1743724088325
+    modified: 1775522250419
+    isPrivate: false
+  subEnvironments:
+    - name: Read Environment
+      meta:
+        id: env_d1fb250b736f478d94dc03bba254c051
+        created: 1775522209842
+        modified: 1775522303325
+        isPrivate: false
+        sortKey: 1775522209842
+      data:
+        X-API-KEY: 8db790c7-70d6-4ab9-80d2-924207ecb6dc
+      color: "#10480f"
+    - name: Write Environment
+      meta:
+        id: env_78685bb8dcf845ebaa4a8a171311fcba
+        created: 1775522228415
+        modified: 1775522290566
+        isPrivate: false
+        sortKey: 1775522228415
+      data:
+        X-API-KEY: 4247cca7-12cd-47d0-9ba8-a9a248a7003d
+      color: "#841010"
