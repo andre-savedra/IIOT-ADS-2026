@@ -5,10 +5,10 @@
 ## 2 - Criar as variáveis de ambiente para serem usadas no command line:
 
 ```
-$RG="andre-savedra2-rg"
+$RG="andre-savedra-turmab-rg"
 $LOC="westus2"
-$APP="andre-savedra2-iiot-app"
-$SP="andre-savedra2-iiot-sp"
+$APP="andre-savedra-turmab-iiot-app"
+$SP="andre-savedra-turmab-iiot-sp"
 ```
 
 ## 3 - Criar grupo de recurso:

@@ -2,6 +2,7 @@
 #include <HTTPClient.h>
 #include <ArduinoJson.h>
 
+
 const char* WIFI_SSID = "Wokwi-GUEST";
 const char* WIFI_PASSWORD = "";
 
@@ -30,9 +31,7 @@ void loop() {
 void readDataAndSend(){
   Serial.println("Start Reading data...");
   float temp = readTemperature();
-  Serial.printf("Temp: %.2f", temp);
   float hum = readHumidity();
-  Serial.println("Humidity: " + hum);
   
   Serial.println("Start Sending data...");
   sendData(temp, hum);
@@ -40,31 +39,37 @@ void readDataAndSend(){
 
 //IMPLEMENTAR
 float readTemperature(){
-  return random(20,50);
+  float temp = random(20,50);
+  Serial.printf("Temp: %.2f \n", temp);
+  return temp;
 }
 
 //IMPLEMENTAR
 float readHumidity(){
-  return random(0,100);
+  float hum = random(0,100);
+  Serial.printf("hum: %.2f \n", hum);
+  return hum;
 }
 
 void sendData(float temp, float hum){
   StaticJsonDocument<128> payload;
   payload["sensorId"] = SENSOR_ID;
-  payload["jsonValue"] = "{\"temperature\":" + temp + ",\"humidity\":" + hum + "}";
+  payload["jsonValue"] = "{\"temperature\":" + String(temp) 
+  + ",\"humidity\":" + String(hum) + "}";
 
-  chat bodyJsonString[255];
+  char bodyJsonString[255];
   serializeJson(payload, bodyJsonString);
   Serial.printf("Data to be sent: %s \n", bodyJsonString);
 
-  HttpClient http;
-  http.begin(API_URL);
+  WiFiClient wifiClient;
+  HTTPClient http;
+  http.begin(wifiClient,API_URL);
   http.addHeader("Content-Type","application/json");
   http.addHeader("X-API-KEY",WRITE_API_KEY);
 
   int httpResponse = http.POST(bodyJsonString);
   if(httpResponse > 0){
-    Serial.printf("Response received: %s \n", http.getString());
+    Serial.printf("Response received: %d \n", httpResponse);
     if(httpResponse == 201){
       Serial.println("Data was successfully sent!!!");
     }
