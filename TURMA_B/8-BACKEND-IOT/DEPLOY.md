@@ -44,8 +44,13 @@ az webapp deploy --resource-group $RG --name $APP --src-path 'CAMINHO_PARA_A_PAS
 ## 10 - Após executado o deploy com sucesso, crie as variáveis de ambiente dentro do seu app service (via portal da azure ou via command line abaixo):
 
 ```
-az webapp config appsettings set --name $APP --resource-group $RG --settings DATABASE_URL=postgresql://postgres:CFP501@MANGE!!@db.cwlkijrphdpylvdgsuuc.supabase.co:5432/postgres
+az webapp config appsettings set --name $APP --resource-group $RG --settings DATABASE_URL=postgresql://postgres.hpexasnujsklxpkmcwmf:CFP501MANGE!!@aws-1-us-east-2.pooler.supabase.com:6543/postgres?pgbouncer=true
 ```
+
+```
+az webapp config appsettings set --name $APP --resource-group $RG --settings DIRECT_URL=postgresql://postgres.hpexasnujsklxpkmcwmf:CFP501MANGE!!@aws-1-us-east-2.pooler.supabase.com:5432/postgres
+```
+
 
 ```
 az webapp config appsettings set --name $APP --resource-group $RG --settings READ_API_KEY=8db790c7-70d6-4ab9-80d2-924207ecb6dc
@@ -68,7 +73,7 @@ az webapp config appsettings set --name $APP --resource-group $RG --settings NOD
 ```
 
 ```
-az webapp config set --name $APP --resource-group $RG --startup-file "node dist/src/main.js"
+az webapp config set --name $APP --resource-group $RG --startup-file "cd /home/site/wwwroot && npm run start:prod"
 ```
 
 
