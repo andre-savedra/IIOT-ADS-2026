@@ -1,26 +1,25 @@
-import { IsNotEmpty, MaxLength, IsString, MinLength, IsUUID }  from 'class-validator';
-
+import { IsNotEmpty, IsString, MaxLength, MinLength, IsUUID, ValidationOptions } from "class-validator";
 
 export class CreateSensorDto {
-    @IsNotEmpty({message: 'Name não pode ser vazio'})
-    @MaxLength(150,{message: 'Name excede 150 caracteres'})  
-    @MinLength(5,{message: 'Name deve ser superior à 4 caracteres'})  
-    @IsString({message: 'Name não é uma String Válida!'})  
+
+    @IsString({message: 'name deve ser string'})
+    @IsNotEmpty({message: 'name não pode ser vazio'})
+    @MaxLength(100,{message: 'name excede 100 caracteres'})  
     name: string = "";
 
+    @IsString({message: 'code deve ser string'})
     @IsNotEmpty({message: 'code não pode ser vazio'})
-    @MaxLength(100,{message: 'code excede 100 caracteres'})  
-    @MinLength(3,{message: 'code deve ser superior à 2 caracteres'})  
-    @IsString({message: 'code não é uma String Válida!'})  
+    @MaxLength(50,{message: 'code excede 50 caracteres'})
+    @MinLength(5,{message: 'code deve ser maior que 5 caracteres'})  
     code: string = "";
-
+    
+    @IsString({message: 'description deve ser string'})
     @IsNotEmpty({message: 'description não pode ser vazio'})
-    @MaxLength(200,{message: 'description excede 200 caracteres'})  
-    @MinLength(5,{message: 'description deve ser superior à 4 caracteres'})  
-    @IsString({message: 'description não é uma String Válida!'})
+    @MaxLength(200,{message: 'description excede 200 caracteres'})
+    @MinLength(10,{message: 'description deve ser maior que 10 caracteres'})
     description: string = "";
 
-    @IsUUID(undefined, {message: 'machineId deve ser um UUID válido'})
+    @IsUUID(undefined, {message: 'UUID deve ser válido'})
     @IsNotEmpty({message: 'machineId não pode ser vazio'})
     machineId: string = "";
 }

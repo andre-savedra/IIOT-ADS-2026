@@ -2,7 +2,6 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { MachineService } from './machine.service';
 import { CreateMachineDto } from './dto/create-machine.dto';
 import { UpdateMachineDto } from './dto/update-machine.dto';
-import { Public } from 'auth/public.decorator';
 
 @Controller('machine')
 export class MachineController {
@@ -12,8 +11,7 @@ export class MachineController {
   create(@Body() createMachineDto: CreateMachineDto) {
     return this.machineService.create(createMachineDto);
   }
-  
-  @Public()
+
   @Get()
   findAll() {
     return this.machineService.findAll();

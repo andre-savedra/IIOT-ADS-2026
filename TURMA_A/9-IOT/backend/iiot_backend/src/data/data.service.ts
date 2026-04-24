@@ -14,7 +14,7 @@ export class DataService {
 
     const sensorFound = await sensorService.findOne(createDataDto.sensorId);
     if(sensorFound === null){
-      throw new NotFoundException(`Sensor com id: ${createDataDto.sensorId} não encontrado!`);      
+      throw new NotFoundException(`Sensor com id: ${createDataDto.sensorId} não encontrado!`)
     }
     
     return this.appService.data.create({
@@ -40,7 +40,7 @@ export class DataService {
 
     const sensorFound = await sensorService.findOne(updateDatumDto.sensorId!);
       if(sensorFound === null){
-        return new NotFoundException(`Sensor com id: ${updateDatumDto.sensorId} não encontrado!`); 
+        throw new NotFoundException(`Sensor com id: ${id} não encontrado!`)
       }
 
     return this.appService.data.update({

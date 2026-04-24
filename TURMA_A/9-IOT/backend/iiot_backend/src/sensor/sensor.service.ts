@@ -15,7 +15,7 @@ export class SensorService {
     });
 
     if(machineFound === null){
-      throw new NotFoundException(`Máquina com o id: ${createSensorDto.machineId} não encontrada!`);
+        throw new NotFoundException(`Máquina com o id: ${createSensorDto.machineId} não encontrada!`);
     }
 
     return this.appService.sensor.create({
@@ -43,7 +43,7 @@ export class SensorService {
     });
 
     if(machineFound === null){
-      throw new NotFoundException(`Máquina com o id: ${updateSensorDto.machineId} não encontrada!`);
+        throw new NotFoundException(`Máquina com o id: ${updateSensorDto.machineId} não encontrada!`);
     }
 
     return this.appService.sensor.update({
