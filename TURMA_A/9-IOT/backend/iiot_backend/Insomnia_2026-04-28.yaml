@@ -139,6 +139,64 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
+          - url: http://andre-savedra-turmab-iiot-app.azurewebsites.net/machine
+            name: Get Machines 2
+            meta:
+              id: req_404052dfdfcd4271a2461e8467b262de
+              created: 1776474546661
+              modified: 1776989977623
+              isPrivate: false
+              description: ""
+              sortKey: -1775174097573.25
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/11.6.2
+              - name: X-API-KEY
+                value: "{{ _['X-API-KEY'] }}"
+                description: ""
+                disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://andre-savedra-turmab-iiot-app.azurewebsites.net/machine
+            name: Create Machine CLOUD
+            meta:
+              id: req_dc2bf4c74ff14485955fd9c123627a38
+              created: 1776991451034
+              modified: 1776991474790
+              isPrivate: false
+              description: ""
+              sortKey: -1768518719166
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"name": "Torno CNC"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.6.2
+              - name: X-API-KEY
+                value: "{{ _['X-API-KEY'] }}"
+                description: ""
+                disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
       - name: SENSOR
         meta:
           id: fld_6e5c66d2b9244aa58413faf175e6cfec
@@ -235,6 +293,42 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
+          - url: http://andre-savedra-turmab-iiot-app.azurewebsites.net/sensor
+            name: Create Sensor CLOUD
+            meta:
+              id: req_830ef9d627e6487988b2068243eff72c
+              created: 1776993028870
+              modified: 1776993049380
+              isPrivate: false
+              description: ""
+              sortKey: -1775174123769
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {	
+                		"name": "Sensor de Efeito Hall",
+                		"code": "HAKKIIF334",
+                		"description": "Sensor de Efeito Hall 5mA",
+                		"machineId": "2a6d3458-c0e8-4d9a-85d4-4f6df6702d75"	
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.6.2
+              - name: X-API-KEY
+                value: "{{ _['X-API-KEY'] }}"
+                description: ""
+                disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
       - name: DATA
         meta:
           id: fld_3129843e15c94240adda6e5853368404
@@ -300,7 +394,7 @@ collection:
             meta:
               id: req_9cb4ca068a6e49c48d7b4994e772a974
               created: 1775178288347
-              modified: 1775775504718
+              modified: 1776123036029
               isPrivate: false
               description: ""
               sortKey: -1775174123794
@@ -310,11 +404,36 @@ collection:
               text: |-
                 {
                 	"jsonValue": "{\"temperatura\": 33.0,\"ph\": 7.5}",
-                	"sensorId": "45fd156b-f1b1-4ab8-8799-18e15787a98a"
+                	"sensorId": "928f7ecb-c861-4760-8faa-d85d25292638"
                 }
             headers:
               - name: Content-Type
                 value: application/json
+              - name: User-Agent
+                value: insomnia/11.6.2
+              - name: X-API-KEY
+                value: "{{ _['X-API-KEY'] }}"
+                description: ""
+                disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://andre-savedra-turmab-iiot-app.azurewebsites.net/data
+            name: Get DATA CLOUD
+            meta:
+              id: req_342fd86d71174f929103f82f8610a31b
+              created: 1776993073094
+              modified: 1776993081140
+              isPrivate: false
+              description: ""
+              sortKey: -1775174123819
+            method: GET
+            headers:
               - name: User-Agent
                 value: insomnia/11.6.2
               - name: X-API-KEY
@@ -334,7 +453,24 @@ cookieJar:
   meta:
     id: jar_99d30891da4bdcebc63947a8fc17f076de878684
     created: 1743724088329
-    modified: 1743724088329
+    modified: 1776989982543
+  cookies:
+    - id: 91c811d8-81c4-475b-bf42-629807a4238b
+      key: ARRAffinity
+      value: 6627028c5a6ac01c144d8a4b83d1cf5d3ba4bfcc95368f6b86f5ffacda9438b3
+      domain: andre-savedra3-iiot-app.azurewebsites.net
+      path: /
+      secure: false
+      httpOnly: true
+      hostOnly: false
+    - id: 756d4417-db00-41f3-84fd-01941dc74100
+      key: ARRAffinity
+      value: ebc21dc3cf1bb718ed806f140e1147d405a92227736ffcd0c2c35e5d76b84dc6
+      domain: andre-savedra-turmab-iiot-app.azurewebsites.net
+      path: /
+      secure: false
+      httpOnly: true
+      hostOnly: false
 environments:
   name: Base Environment
   meta:
