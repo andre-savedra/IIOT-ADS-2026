@@ -6,9 +6,9 @@
 const char* WIFI_SSID = "Wokwi-GUEST";
 const char* WIFI_PASSWORD = "";
 
-const char* API_URL = "https://andre-savedra2-iiot-app.azurewebsites.net/data";
+const char* API_URL = "http://andre-savedra-turmab-iiot-app.azurewebsites.net/data";
 const char* WRITE_API_KEY = "4247cca7-12cd-47d0-9ba8-a9a248a7003d";
-const char* SENSOR_ID = "ATUALIZAR!!!!";
+const char* SENSOR_ID = "9a99028c-adda-49ee-9630-ee7370129154";
 
 unsigned long timer;
 
